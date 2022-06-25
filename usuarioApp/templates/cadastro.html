@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="{% static 'css/dica.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+    <article class="principal">
+        <form method="POST">
+            <article class="row">
+                <article class="col-3"></article>
+                <article class="col-6">
+                    <h2>Cadastro</h2>
+                    <form method="POST" action="usuario/cadastrar/">
+                        {% csrf_token %}
+                        <label for="nome">Nome</label>
+                        <input class="form-control" type="text" id="nome" name="nome" aria-label="Nome">
+                        <label for="email">E-mail</label>
+                        <input class="form-control" type="email" id="email" name="email" aria-label="E-mail">
+                        <label for="senha">Senha</label>
+                        <input class="form-control" type="password" id="senha" name="senha" aria-label="Senha">
+                        <div class="d-grid gap-2 col-2 mx-auto" style="margin-top: 1rem;">
+                            <button class="btn btn-primary" type="submit">Cadastrar</button>
+                        </div>
+                    </form>
+                    <hr>
+                    <div style="text-align: center;">
+                        <label>Já possui uma conta? Clique <a href="{% url 'login' %}">aqui</a></label>
+                    </div>
+
+                </article>
+                <article class="col-3"></article>
+            </article>
+        </form>
+    </article>
+</body>
+
+</html>

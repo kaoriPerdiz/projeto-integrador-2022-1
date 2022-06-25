@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicas</title>
+    <link rel="stylesheet" href="{% static 'css/dica.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: #f2be85;">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'todas_dicas' %}">Início</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        {% for tag in tags %}
+                            <li><a class="dropdown-item" href="{% url 'filtrar_tag' tag.id %}">{{ tag.titulo }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <article class="principal">
+        <form method="POST">
+            {% csrf_token %}
+            {% for dica in dicas_filtradas %}
+            <article class="row">
+                <article class="col-3"></article>
+                <article class="col-6">
+                    <article>
+                        <h2>
+                            <a href="{% url 'detalhe_dica' dica.id %}">
+                                {{ dica.titulo }}
+                            </a>
+                        </h2>
+                        <p class="date">
+                            Adicionado em {{ dica.criacao }} por {{ dica.autor }}
+                        </p>
+                        {{ dica.descricao|linebreaks|truncatewords:10 }}
+                        <p>Tag: {{ dica.tag.titulo }}</p>
+                    </article>
+                </article>
+                <article class="col-3"></article>
+            </article>
+            {% endfor %}
+        </form>
+    </article>
+
+</body>
+</html>
