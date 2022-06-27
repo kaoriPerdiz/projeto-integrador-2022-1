@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="{% static 'css/dica.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+    <article class="principal">
+        <article class="row">
+            <article class="col-3"></article>
+            <article class="col-6">
+                <h2>Outros dados</h2>
+                <form method="POST" action="{% url 'cadastrarInformacoes'%}">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ novoUsuario }}" id="usuario" name="usuario">
+                    <label for="idade">Idade</label>
+                    <input class="form-control" type="text" id="idade" name="idade" aria-label="Idade">
+                    <label for="genero">Genero</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="generoF" value="F">
+                        <label class="form-check-label" for="generoF">
+                            Feminino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="genero" id="generoM" value="M" checked>
+                        <label class="form-check-label" for="generoM">
+                            Masculino
+                        </label>
+                    </div>
+                    <label for="telefone">Telefone</label>
+                    <input class="form-control" type="text" id="telefone" name="telefone" aria-label="Telefone">
+                    <label for="primeiroEmprego">Primeiro emprego?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="primeiroEmprego" id="primeiroEmpregoSim" value="sim">
+                        <label class="form-check-label" for="primeiroEmpregoSim">
+                            Sim
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="primeiroEmprego" id="primeiroEmpregoNao" value="nao" checked>
+                        <label class="form-check-label" for="primeiroEmpregoNao">
+                            Não
+                        </label>
+                    </div>
+                    <div class="d-grid gap-2 col-2 mx-auto" style="margin-top: 1rem;">
+                        <button class="btn btn-primary" type="submit">Cadastrar</button>
+                    </div>
+                </form>
+            </article>
+            <article class="col-3"></article>
+        </article>
+    </article>
+</body>
+
+</html>

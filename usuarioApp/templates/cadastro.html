@@ -19,12 +19,11 @@
 
 <body>
     <article class="principal">
-        <form method="POST">
             <article class="row">
                 <article class="col-3"></article>
                 <article class="col-6">
                     <h2>Cadastro</h2>
-                    <form method="POST" action="usuario/cadastrar/">
+                    <form method="POST" action="{% url 'cadastrar'%}">
                         {% csrf_token %}
                         <label for="nome">Nome</label>
                         <input class="form-control" type="text" id="nome" name="nome" aria-label="Nome">
@@ -33,7 +32,7 @@
                         <label for="senha">Senha</label>
                         <input class="form-control" type="password" id="senha" name="senha" aria-label="Senha">
                         <div class="d-grid gap-2 col-2 mx-auto" style="margin-top: 1rem;">
-                            <button class="btn btn-primary" type="submit">Cadastrar</button>
+                            <button class="btn btn-primary" type="submit">Prosseguir</button>
                         </div>
                     </form>
                     <hr>
@@ -44,7 +43,6 @@
                 </article>
                 <article class="col-3"></article>
             </article>
-        </form>
     </article>
 </body>
 
