@@ -15,6 +15,7 @@
     <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/validacao-usuario.js' %}"></script>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
                 <article class="col-3"></article>
                 <article class="col-6">
                     <h2>Cadastro</h2>
-                    <form method="POST" action="{% url 'cadastrar'%}">
+                    <form method="POST" action="{% url 'cadastrar'%}" id="formulario" onsubmit="return validacaoCadastro();">
                         {% csrf_token %}
                         <label for="nome">Nome</label>
                         <input class="form-control" type="text" id="nome" name="nome" aria-label="Nome">

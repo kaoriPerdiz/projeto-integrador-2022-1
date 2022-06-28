@@ -6,10 +6,14 @@ from django.contrib.auth.models import User
 
 
 def cadastro(request):
+    if request.user.is_authenticated:
+        return redirect('/dicas')
     return render(request, "cadastro.html")
 
 
 def informacoes(request):
+    if request.user.is_authenticated:
+        return redirect('/dicas')
     return render(request, "informacoes.html")
 
 
@@ -47,6 +51,8 @@ def cadastrar(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('/dicas')
     return render(request, "login.html")
 
 @require_POST

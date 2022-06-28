@@ -15,6 +15,7 @@
     <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/validacao-usuario.js' %}"></script>
 </head>
 
 <body>
@@ -23,26 +24,28 @@
             <article class="col-3"></article>
             <article class="col-6">
                 <h2>Outros dados</h2>
-                <form method="POST" action="{% url 'cadastrarInformacoes'%}">
+                <form method="POST" action="{% url 'cadastrarInformacoes'%}" onsubmit="return validacaoInformacoes()" id="formulario">
                     {% csrf_token %}
                     <input type="hidden" value="{{ novoUsuario }}" id="usuario" name="usuario">
                     <label for="idade">Idade</label>
                     <input class="form-control" type="text" id="idade" name="idade" aria-label="Idade">
-                    <label for="genero">Genero</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="generoF" value="F">
-                        <label class="form-check-label" for="generoF">
-                            Feminino
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genero" id="generoM" value="M" checked>
-                        <label class="form-check-label" for="generoM">
-                            Masculino
-                        </label>
-                    </div>
+                    <fieldset>
+                        <legend>Gênero</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genero" id="generoF" value="F">
+                            <label class="form-check-label" for="generoF">
+                                Feminino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="genero" id="generoM" value="M" checked>
+                            <label class="form-check-label" for="generoM">
+                                Masculino
+                            </label>
+                        </div>
+                    </fieldset>
                     <label for="telefone">Telefone</label>
-                    <input class="form-control" type="text" id="telefone" name="telefone" aria-label="Telefone">
+                    <input class="form-control" type="text" id="telefone" name="telefone" aria-label="Telefone" maxlength="15" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
                     <label for="primeiroEmprego">Primeiro emprego?</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="primeiroEmprego" id="primeiroEmpregoSim" value="sim">

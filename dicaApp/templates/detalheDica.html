@@ -19,24 +19,32 @@
     <header>
         <nav class="navbar navbar-expand-lg" style="background-color: #f2be85;">
             <div class="container-fluid">
-              <a class="navbar-brand" href="{% url 'todas_dicas' %}">Início</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        {% for tag in tags %}
-                            <li><a class="dropdown-item" href="{% url 'filtrar_tag' tag.id %}">{{ tag.titulo }}</a></li>
-                        {% endfor %}
-                        </ul>
-                    </li>
-                </ul>
-              </div>
+                <a class="navbar-brand" href="{% url 'todas_dicas'%}">Prepara Jovem</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                                data-toggle="dropdown" aria-expanded="false">
+                                Categorias
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                {% for tag in tags %}
+                                    <li><a class="dropdown-item" href="{% url 'filtrar_tag' tag.id %}">{{ tag.titulo }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'enquete' %}">Enquete</a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="navbar-brand" href="{% url 'sair' %}">Sair</a>
             </div>
-          </nav>
+        </nav>
     </header>
     <article class="principal">
         <form method="POST">
@@ -46,9 +54,6 @@
                 <article class="col-6">
                     <article>
                         <h2>{{ dica_selecionada.titulo }}</h2>
-                        <p class="date">
-                            Adicionado em {{ dica_selecionada.criacao }} por {{ dica_selecionada.autor }}
-                        </p>
                         <p>
                             Tag: <a href="{% url 'filtrar_tag' dica_selecionada.tag.id %}">{{ dica_selecionada.tag.titulo }}</a>
                         </p>

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dicaApp.apps.DicaappConfig',
     'tagApp.apps.TagappConfig',
-    'usuarioApp.apps.UsuarioappConfig',
+    'usuarioApp.apps.UsuarioappConfig'
 ]
 
 MIDDLEWARE = [
