@@ -27,6 +27,7 @@
                 <form method="POST" action="{% url 'cadastrarInformacoes'%}" onsubmit="return validacaoInformacoes()" id="formulario">
                     {% csrf_token %}
                     <input type="hidden" value="{{ novoUsuario }}" id="usuario" name="usuario">
+                    <input type="hidden" value="{{ senha }}" id="senha" name="senha">
                     <label for="idade">Idade</label>
                     <input class="form-control" type="text" id="idade" name="idade" aria-label="Idade">
                     <fieldset>

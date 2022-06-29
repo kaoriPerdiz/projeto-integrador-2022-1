@@ -25,6 +25,7 @@ def cadastrarInformacoes(request):
         telefone = request.POST["telefone"]
         primeiroEmprego = True if request.POST["primeiroEmprego"] == 'sim' else False
         usuario = request.POST["usuario"]
+        senha = request.POST["senha"]
         usuarioInserido = User.objects.get(username = usuario)
         informacoesUsuarioNovo = informacoesUsuario(
             idade=idade,
@@ -34,7 +35,13 @@ def cadastrarInformacoes(request):
             usuario=usuarioInserido
         )
         informacoesUsuarioNovo.save()
-        return redirect('/dicas')
+        user = authenticate(request, username=usuarioInserido.email, password=senha)
+        print(user)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('/dicas')
+        else:
+            return render(request, "login.html")
 
 
 @require_POST
@@ -47,7 +54,7 @@ def cadastrar(request):
             username=email, email=email, password=senha, first_name=nome
         )
         novoUsuario.save()
-        return render(request, "informacoes.html", {"novoUsuario": novoUsuario})
+        return render(request, "informacoes.html", {"novoUsuario": novoUsuario, "senha": senha})
 
 
 def login(request):
